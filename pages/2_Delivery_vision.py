@@ -21,6 +21,71 @@ st.set_page_config (page_title = 'Delivery vision',
     #2. Guarda um Dataframe
     #3. Gera uma tabela
     
+            
+def avg_rating_delivery(df1):
+
+    df_aux = (df1.loc[:,['Delivery_person_Ratings','Delivery_person_ID']].
+              groupby('Delivery_person_ID').
+              mean().
+              reset_index())
+
+    df_aux = (df_aux.
+              rename(columns={'Delivery_person_ID': 'Person ID',
+                              'Delivery_person_Ratings': 'Person Ratings'}))
+
+    fig = px.line(df_aux, y='Person Ratings', title= ' ')
+    fig.update_layout(title_font=dict(size=20), xaxis_title="Delivery", yaxis_title="Mean")
+
+    return fig
+        
+    
+#=================================
+
+    #1. Recebe um Dataframe
+    #2. Guarda um Dataframe
+    #3. Gera uma tabela
+    
+def avg_rating_traffic(df1):
+    df1.rename(columns={'Road_traffic_density': 'Road traffic density'}, inplace=True)
+    df_aux = df1.groupby('Road traffic density')['Delivery_person_Ratings'].agg(['mean', 'std'])
+    df_aux.reset_index(inplace=True)
+    df_aux.rename(columns={'mean': 'Mean', 'std': 'Standard deviation'}, inplace=True)
+
+    avg_distance = df_aux.sort_values(by='Standard deviation', ascending=True)
+    pull_values = [0] * len(avg_distance)
+    pull_values[0] = 0.08
+
+    df_aux.rename(columns={'Road traffic density': 'Traffic Density'}, inplace=True)
+
+    fig = go.Figure(data=[go.Pie(labels=avg_distance.index,
+                                 values=avg_distance['Standard deviation'], pull=pull_values)])
+    fig.update_layout(width=800, height=500)
+    fig.update_layout(legend=dict(orientation="v", yanchor="top", y=1.2, xanchor="left", x=0.1))
+
+    return df_aux
+        
+#=================================
+    #1. Recebe um Dataframe
+    #2. Guarda um Dataframe
+    #3. Gera uma tabela
+    
+def avg_rating_condition(df1):
+
+    df_aux = (df1.loc[:,['Weatherconditions','Delivery_person_Ratings']]
+                 .groupby('Weatherconditions')
+                 .agg({'Delivery_person_Ratings': ['mean','std','min','max']}))
+
+    df_aux.columns = ['Mean Rating','Standard deviation Rating','Min Rating','Max Rating']
+    df_aux01 = df_aux.reset_index(inplace=True)
+    df_aux01 = df_aux.reset_index(drop=True)
+
+    return df_aux01
+
+#=================================
+    #1. Recebe um Dataframe
+    #2. Guarda um Dataframe
+    #3. Gera uma tabela
+    
 def top_delivers(df1, top_asc):
     df_aux = (df1.loc[:,['Delivery_person_ID','City','Time_taken(min)']]
                  .groupby(['City','Delivery_person_ID'])
@@ -204,9 +269,9 @@ df1 = df1.loc[linhas_selecionadas,:]
 linhas_selecionadas01 = df1['City'].isin(bycity_options)
 df1 = df1.loc[linhas_selecionadas01,:]
 linhas_selecionadas02 = df1['Road_traffic_density'].isin(traffic_options)
-df1 = df1.loc[linhas_selecionadas01,:]
-linhas_selecionadas03 = df1['Weatherconditions'].isin(weatherconditions_options)
 df1 = df1.loc[linhas_selecionadas02,:]
+linhas_selecionadas03 = df1['Weatherconditions'].isin(weatherconditions_options)
+df1 = df1.loc[linhas_selecionadas03,:]
 
 #st.dataframe(df1)
 st.sidebar.markdown("""___""")
@@ -255,106 +320,37 @@ with tab1:
         
     with st.container():
 
-        st.markdown('Average for Delivery') 
-        df_aux = (df1.loc[:,['Delivery_person_Ratings','Delivery_person_ID']].
-                  groupby('Delivery_person_ID').
-                  mean().
-                  reset_index())
-
-        df_aux = (df_aux.
-                  rename(columns={'Delivery_person_ID': 'Person ID',
-                                  'Delivery_person_Ratings': 'Person Ratings'}))
-
-        fig = px.line(df_aux, y='Person Ratings', title= ' ')
-        fig.update_layout(title_font=dict(size=20), xaxis_title="Delivery", yaxis_title="Mean")
-
+        st.markdown('### Average for Delivery')
+        fig = avg_rating_delivery(df1)
         st.plotly_chart(fig, use_container_width =True)
 
     with st.container():
-
-        df1.rename(columns={'Road_traffic_density': 'Road traffic density'}, inplace=True)
-
-        st.markdown('Mean and Standard deviation for traffic density')
-        df_aux = df1.groupby('Road traffic density')['Delivery_person_Ratings'].agg(['mean', 'std'])
-        df_aux.rename(columns={'mean': 'Mean', 'std': 'Standard deviation'}, inplace=True)
-
-        avg_distance = df_aux.sort_values(by='Standard deviation', ascending=True)
-        pull_values = [0] * len(avg_distance)
-        pull_values[0] = 0.08
-
-        df_aux.rename(columns={'Road traffic density': 'Traffic Density'}, inplace=True)
-        fig = go.Figure(data=[go.Pie(labels=avg_distance.index,
-                                     values=avg_distance['Standard deviation'], pull=pull_values)])
-
-        #fig.update_layout(title='Mean and Standard deviation for traffic density', title_font=dict(size=20))
-        fig.update_layout(width=800, height=500)
-        fig.update_layout(legend=dict(orientation="v", yanchor="top", y=1.2, xanchor="left", x=0.1))
-
-        st.plotly_chart(fig)
+        
+        st.markdown('### Mean and Standard deviation for traffic density')
+        df3 = avg_rating_traffic(df1)
+        st.table(df3.reset_index(drop=True))
 
     with st.container():
-    # 1 coluna com 2 linhas
-            st.markdown("""___""")
 
-            st.markdown('Average ratings and standard deviation for weather conditions')
-
-            df_aux = (df1.loc[:,['Weatherconditions','Delivery_person_Ratings']]
-                         .groupby('Weatherconditions')
-                         .agg({'Delivery_person_Ratings': ['mean','std']})) 
-
-            df_aux.columns = ['Mean','Standard deviation']
-
-            fig = go.Figure()
-
-            # Add the mean line
-            fig.add_trace(go.Scatter(x=df_aux.index, y=df_aux['Mean'], mode='lines', name='Mean'))
-
-            # Add the shaded area representing standard deviation
-            fig.add_trace(go.Scatter(
-                x=df_aux.index,
-                y=df_aux['Mean'] + df_aux['Standard deviation'],
-                mode='lines',
-                line=dict(width=0.05),
-                showlegend=False
-            ))
-
-            fig.add_trace(go.Scatter(
-                x=df_aux.index,
-                y=df_aux['Mean'] - df_aux['Standard deviation'],
-                mode='lines',
-                fill='tonexty',
-                fillcolor='rgba(216, 230, 232, 0.12)',
-                line=dict(width=0),
-                name='Standard deviation'
-            ))
-
-            fig.update_layout(
-                title=' ',
-                xaxis_title="Weatherconditions",
-                yaxis_title="Mean"
-            )
-            
-            fig.update_traces(line=dict(shape='spline'))
-
-            st.plotly_chart(fig, use_container_width=True)
-
-            
-#===========================================================================================
+        st.markdown("""___""")
+        st.markdown('### Average ratings and standard deviation for weather conditions')
+        df3 = avg_rating_condition(df1)
+        st.table(df3)
 
     with st.container():
         # 2 colunas
         st.markdown("""___""")
-        st.title('Delivery Speed')
+        st.markdown('### Delivery Speed')
         
         col1,col2 = st.columns(2)
         
         with col1:
-            st.markdown('Top fastest couriers')
+            st.markdown('### Top fastest couriers')
             df3 = top_delivers(df1, top_asc = True)
             st.table(df3)
                   
         with col2:
             
-            st.markdown('Top slowest couriers')
+            st.markdown('### Top slowest couriers')
             df3 = top_delivers(df1, top_asc = False)
             st.table(df3.reset_index(drop=True))

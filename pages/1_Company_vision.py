@@ -99,8 +99,7 @@ def country_maps(df1):
     
 def Order_share_by_week(df1):
     # Exercicio 5 (visao empresa)
-    df1 = df1.rename(columns={'week_of_year': 'week of year', 'order_by_deliver': 'order by deliver'})  # 
-
+    df1 = df1.rename(columns={'week_of_year': 'week of year', 'order_by_deliver': 'order by deliver'}) 
     df_aux01 = df1.loc[:,['ID','week of year']].groupby('week of year').count().reset_index()
     df_aux02 = (df1.loc[:,['ID',
                            'Delivery_person_ID',
@@ -108,20 +107,16 @@ def Order_share_by_week(df1):
                     groupby('week of year').
                     nunique().
                     reset_index())
-
+    df_aux02 = df_aux02.rename(columns={'Delivery_person_ID': 'Delivery Persons'})
     df_aux = pd.merge(df_aux01, df_aux02, how='inner')
-    df_aux['order by deliver'] = df_aux['ID'] / df_aux['Delivery_person_ID']
+    df_aux['order by deliver'] = df_aux['ID'] / df_aux['Delivery Persons']
     
     fig = px.line(df_aux, x='week of year', y='order by deliver')
-    
-    # Removendo linhas padrão de fundo
     fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', 
                       xaxis=dict(showgrid=False),
                       yaxis=dict(showgrid=False))
-    
-    fig.update_traces(line=dict(color = 'red', shape='spline'))
+    fig.update_traces(line=dict(color = 'lightgreen', shape='spline'))
 
-    
     return fig
     
 #=================================
@@ -135,13 +130,15 @@ def Order_by_week(df1):
     df1['week_of_year']= df1['Order_Date'].dt.strftime('%U')
     df1 = df1.rename(columns={'week_of_year': 'week of year'})
     df_aux = df1.loc[:,['ID','week of year']].groupby('week of year').count().reset_index()
+    
+    
     fig = px.line( df_aux, x='week of year', y = 'ID')
     
     fig.update_layout(plot_bgcolor='rgba(0,0,0,0)', 
                       xaxis=dict(showgrid=False),
                       yaxis=dict(showgrid=False))
     
-    fig.update_traces(line=dict(color='red', shape='spline'))
+    fig.update_traces(line=dict(color='lightgreen', shape='spline'))
 
     return fig
 

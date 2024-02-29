@@ -30,34 +30,45 @@ def avg_order_city(df1):
 
     df_aux.columns = ['Média', 'Desvio padrão']
     df_aux01 = df_aux.reset_index()
+    
+    # Classificar pelo desvio padrão
+    df_aux01 = df_aux01.sort_values(by=('Desvio padrão'), ascending=True)
+    
+    return df_aux01
 
-    fig = px.sunburst(df_aux01,
-    path=['City', 'Type_of_order'],
-    values='Média',
-    color='Desvio padrão',
-    color_continuous_scale='RdBu',
-    color_continuous_midpoint=np.average(df_aux01['Desvio padrão']))
-
-    return fig, df_aux01
+    #fig = px.sunburst(df_aux01,
+    #path=['City', 'Type_of_order'],
+    #values='Média',
+    #color='Desvio padrão',
+    #color_continuous_scale='RdBu',
+    #color_continuous_midpoint=np.average(df_aux01['Desvio padrão']))
 
 #=================================
         
 def avg_time_on_traffic(df1):
+    cols = ['Time_taken(min)', 'City', 'Road_traffic_density']
+    df_aux = (df1.loc[:,cols]
+              .groupby(['City', 'Road_traffic_density'])
+              .agg({'Time_taken(min)': ['mean', 'std']}))
 
-    cols = ['Time_taken(min)','City','Road_traffic_density']
-    df_aux = (df1.loc[:,cols].
-                 groupby(['City','Road_traffic_density']).
-                 agg({'Time_taken(min)':['mean','std']}))
-
-    df_aux.columns = ['Média','Desvio padrão']
+    df_aux.columns = ['Média', 'Desvio padrão']
     df_aux01 = df_aux.reset_index()
 
     fig = px.sunburst(df_aux01,
-    path=['City', 'Road_traffic_density'],
-    values='Média',
-    color='Desvio padrão',
-    color_continuous_scale=['lightgray', 'blue'],
-    color_continuous_midpoint=np.average(df_aux01['Desvio padrão']))
+                      path=['City', 'Road_traffic_density'],
+                      values='Média',
+                      color='Desvio padrão',
+                      color_continuous_scale= ['green','lightblue'],  # Alterado para uma escala de azuis
+                      color_continuous_midpoint=df_aux01['Desvio padrão'].mean(),  # Alterado para a média dos desvios padrão
+                      hover_data={'Média': ':.2f', 'Desvio padrão': ':.2f'},  # Adicionado hover com valores formatados
+                      labels={'Média': 'Tempo médio (min)', 'Desvio padrão': 'Desvio padrão | Standard deviation'},  # Rótulos personalizados
+                      branchvalues='total',  # Valores absolutos em vez de relativos
+                      maxdepth=2,  # Limitando a profundidade máxima da hierarquia
+                      )
+    
+    # Adicionando títulos para cada nível
+    fig.update_traces(textinfo="label+percent parent")
+    #fig.update_layout(title="Tempo Médio e Desvio Padrão por Cidade e Densidade de Tráfego")
 
     return fig
         
@@ -65,23 +76,27 @@ def avg_time_on_traffic(df1):
 
 def avg_std_time_graph(df1):
 
-# Gráfico de colunas com boxplot
-    cols = ['Time_taken(min)','City']
-    df_aux = (df1.loc[:,cols].groupby('City')
-                     .agg({'Time_taken(min)':['mean','std']}))
+    cols = ['Time_taken(min)', 'City']
+    df_aux = (df1.loc[:, cols].groupby('City')
+                     .agg({'Time_taken(min)': ['mean', 'std']}))
 
-
-    df_aux.columns = ['Média','Desvio padrão']
+    df_aux.columns = ['Average', 'Standard deviation']
     df_aux01 = df_aux.reset_index()
 
-
     fig = go.Figure()
-    fig.add_trace( go.Bar(name='Control',
-                     x=df_aux01['City'],
-                     y = df_aux01['Média'],
-                     error_y = dict(type='data', array=df_aux01['Desvio padrão'])))
+    fig.add_trace(go.Bar(name=' ',
+                         x=df_aux01['City'],
+                         y=df_aux01['Average'],
+                         error_y=dict(type='data', array=df_aux01['Standard deviation']),
+                         width=0.4))
 
-    fig.update_layout(barmode='group')
+    # Adicionando rótulos de dados acima das barras com a cor da fonte branca
+    for index, row in df_aux01.iterrows():
+        label_text = f"Average: {row['Average']:.2f}<br>Standard deviation: {row['Standard deviation']:.2f}"
+        fig.add_annotation(x=row['City'], y=row['Average'], text=label_text, showarrow=False,
+                           font=dict(color='white'), yshift=70)
+
+    fig.update_layout(barmode='group', bargap=0, showlegend=False, xaxis=dict(showgrid=False), yaxis=dict(showgrid=False))
 
     return fig
 
@@ -158,6 +173,13 @@ def distance(df1, fig):  # col2
         fig = (go.Figure(
         data=[go.Pie(labels=avg_distance['City'],
         values = avg_distance['distance'], pull= pull_values)]))
+        
+        
+        fig.update_layout(
+            autosize=False,
+            width=380,
+            height=380,
+        )
         
         return fig
 
@@ -322,9 +344,9 @@ df1 = df1.loc[linhas_selecionadas,:]
 linhas_selecionadas01 = df1['City'].isin(bycity_options)
 df1 = df1.loc[linhas_selecionadas01,:]
 linhas_selecionadas02 = df1['Road_traffic_density'].isin(traffic_options)
-df1 = df1.loc[linhas_selecionadas01,:]
-linhas_selecionadas03 = df1['Weatherconditions'].isin(weatherconditions_options)
 df1 = df1.loc[linhas_selecionadas02,:]
+linhas_selecionadas03 = df1['Weatherconditions'].isin(weatherconditions_options)
+df1 = df1.loc[linhas_selecionadas03,:]
 
 #st.dataframe(df1)
 st.sidebar.markdown("""___""")
@@ -351,63 +373,62 @@ with tab1:
         with col2:
             
             avg_distance = distance(df1, fig = False)
-            col2.metric('Avg Distance ', avg_distance)
+            col2.metric('Average Distance ', avg_distance)
             
         with col3:
             
             df_aux = avg_std_time_delivery(df1,'Yes','Avg time')
-            col3.metric('Avg Time', df_aux)
+            col3.metric('Average Time', df_aux)
             
             
         with col4:
             
             df_aux = avg_std_time_delivery(df1, 'Yes','Avg std')
-            col4.metric('Avg Std', df_aux)
+            col4.metric('Average Standard deviation', df_aux)
             
             
         with col5:
             
             df_aux = avg_std_time_delivery(df1, 'No','Avg time')
-            col5.metric('Avg Time n/Festival', df_aux)
+            col5.metric('Average Time n/Festival', df_aux)
 
        
         with col6:
             
             df_aux = avg_std_time_delivery(df1, 'No','Avg std')
-            col6.metric('Avg Std n/Festival', df_aux)
+            col6.metric('Average Standard deviation n/Festival', df_aux)
                      
             
     with st.container():
-        
         st.markdown("""___""")
-        st.title('Average delivery time by city')
-        fig = avg_std_time_graph(df1)
-        st.plotly_chart(fig)
+        col1,col2 = st.columns(2)
+        
+        with col1:
 
-#================================================
+            st.markdown('## Average delivery time by city')
+            fig = distance(df1,fig = True)
+            st.plotly_chart(fig)
         
-    with st.container():
-        
-        st.markdown("""___""")
-        st.title('Time distribution') ## Pizza 
-        fig = distance(df1, fig = True)
-        st.plotly_chart(fig)
+        with col2:
+
+
+            st.markdown('## Time distribution')
+            fig = avg_std_time_graph(df1)
+            st.plotly_chart(fig)
         
       
     with st.container():
         
         st.markdown("""___""")
-        st.title('Average orders per city')
-
-        fig, df_aux01 = avg_order_city(df1) # passando duas saídas para o streamlit
-        st.plotly_chart(fig)
-        st.table(df_aux01)
+        st.markdown('## Average orders per city')
+        df_aux01 = avg_order_city(df1)
+        st.table(df_aux01.reset_index(drop=True))
         
         
     with st.container():
         
         st.markdown("""___""")
-        st.title('Distance distribution')
+        st.markdown('## Distance distribution')
         fig = avg_time_on_traffic(df1)
         st.plotly_chart(fig)
 
