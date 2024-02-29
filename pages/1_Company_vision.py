@@ -271,7 +271,7 @@ def clean_code(df):
 #=================================INICIO DA ESTRUTURA LÓGICA=================================#
 #Importação
 #=================================
-df = pd.read_csv('dataset\\train.csv')
+df = pd.read_csv('dataset/train.csv')
 
 #=================================
 #Transformação dos dados
