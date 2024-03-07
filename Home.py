@@ -47,6 +47,5 @@ st.markdown(
             - Weekly restaurant growth indicators
     """)
 
-st.markdown(
 
 
