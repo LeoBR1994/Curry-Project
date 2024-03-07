@@ -48,11 +48,5 @@ st.markdown(
     """)
 
 st.markdown(
-        """
-        Ask for Help
-        
-        - Linkedin: https://www.linkedin.com/in/leonardorosa94
-        
 
-        """)
 
