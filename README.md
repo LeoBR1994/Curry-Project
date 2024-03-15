@@ -70,7 +70,8 @@ as 3 principais visões do modelo de negócio da empresa:
    
 Cada visão é representada pelo seguinte conjunto de métricas.
 
-## 1. Visão do crescimento da empresa  
+## 1. Visão do crescimento da empresa 
+
   a. Pedidos por dia
   b. Porcentagem de pedidos por condições de trânsito
   c. Quantidade de pedidos por tipo e por cidade.
@@ -79,6 +80,7 @@ Cada visão é representada pelo seguinte conjunto de métricas.
   f. Quantidade de pedidos por condições de trânsito e tipo de cidade
 
 ## 2. Visão do crescimento dos restaurantes
+
   a. Quantidade de pedidos únicos.
   b. Distância média percorrida.
   c. Tempo médio de entrega durante festival e dias normais.
@@ -88,7 +90,8 @@ normais.
   f. Distribuição do tempo médio de entrega por cidade.
   g. Tempo médio de entrega por tipo de pedido.
 
-## 3. Visão do crescimento dos entregadores  
+## 3. Visão do crescimento dos entregadores 
+
   a. Idade do entregador mais velho e do mais novo.
   b. Avaliação do melhor e do pior veículo.
   c. Avaliação média por entregador.
