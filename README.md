@@ -1,4 +1,4 @@
-# curry_company
+# Curry Project
 
 
 # 1. Problema de negócio
