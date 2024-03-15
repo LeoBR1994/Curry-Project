@@ -11,14 +11,14 @@ st.set_page_config(
 image = Image.open('curr_company.png')
 st.sidebar.image( image, width = 250)
 
-st.sidebar.write('<span style="font-size: medium;">Leonardo Rosa</span> <span style="font-size: small;">:blue[ | Data Scientist]</span>', unsafe_allow_html=True)
+st.sidebar.write('<span style="font-size: medium;">Project </span> <span style="font-size: small;">:blue[ | Data Scientist]</span>', unsafe_allow_html=True)
 
 
 st.sidebar.markdown("""___""")
 st.sidebar.markdown('# Curry\'s Company')
 st.sidebar.markdown('## Fastest Delivery in Town')
 st.sidebar.markdown("""___""")
-st.sidebar.markdown('### Powered by Comunidade DS')
+st.sidebar.markdown('### Powered by Leonardo DS')
 
 st.write('# Curry Company Growth Dashboard' )
 st.markdown(

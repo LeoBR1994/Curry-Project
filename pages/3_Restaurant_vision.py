@@ -61,7 +61,7 @@ def avg_time_on_traffic(df1):
                       color_continuous_scale= ['green','lightblue'],  # Alterado para uma escala de azuis
                       color_continuous_midpoint=df_aux01['Desvio padrão'].mean(),  # Alterado para a média dos desvios padrão
                       hover_data={'Média': ':.2f', 'Desvio padrão': ':.2f'},  # Adicionado hover com valores formatados
-                      labels={'Média': 'Tempo médio (min)', 'Desvio padrão': 'Desvio padrão | Standard deviation'},  # Rótulos personalizados
+                      labels={'Média': 'Tempo médio (min)', 'Desvio padrão': 'Desvio padrão'},  # Rótulos personalizados
                       branchvalues='total',  # Valores absolutos em vez de relativos
                       maxdepth=2,  # Limitando a profundidade máxima da hierarquia
                       )
@@ -333,7 +333,7 @@ weatherconditions_options = st.sidebar.multiselect(
                        default= weatherconditions)
 
 st.sidebar.markdown("""___""")
-st.sidebar.markdown('### Powered by Comunidade DS')
+st.sidebar.markdown('### Powered by Leonardo DS')
 
 #=================================
 

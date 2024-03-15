@@ -258,7 +258,7 @@ weatherconditions_options = st.sidebar.multiselect(
                        default= weatherconditions)
 
 st.sidebar.markdown("""___""")
-st.sidebar.markdown('### Powered by Comunidade DS')
+st.sidebar.markdown('### Powered by Leonardo DS')
 
 #=================================
 
