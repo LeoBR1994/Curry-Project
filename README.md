@@ -1,5 +1,5 @@
 # Curry Project
-[Link para o Dashboard](https://curry-project.streamlit.app/)
+[Acessar Dashboard](https://curry-project.streamlit.app/)
 
 # Skills utilizadas:
 
