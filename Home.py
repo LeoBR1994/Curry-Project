@@ -18,7 +18,7 @@ st.sidebar.markdown("""___""")
 st.sidebar.markdown('# Curry\'s Company')
 st.sidebar.markdown('## Fastest Delivery in Town')
 st.sidebar.markdown("""___""")
-st.sidebar.markdown('### Powered by Leonardo DS')
+st.sidebar.markdown('### Powered by Leonardo Rosa')
 
 st.write('# Curry Company Growth Dashboard' )
 st.markdown(
