@@ -1,4 +1,5 @@
 # Curry Project
+[Link para o Dashboard](https://curry-project.streamlit.app/)
 
 # Skills utilizadas:
 
@@ -120,7 +121,7 @@ clima ensoladao.
 Painel online, hospedado em um Cloud e disponível para acesso em
 qualquer dispositivo conectado à internet.
 
-O painel pode ser acessado através desse link: [[https://project-currycompany.streamlit.app/](https://leo-currycompany-project-ds.streamlit.app/)](https://leo-currycompany-project-ds.streamlit.app/)
+O painel pode ser acessado através desse link: (https://curry-project.streamlit.app/)
 
 # 6. Conclusão
    
