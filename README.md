@@ -1,4 +1,5 @@
 # Curry Project
+Link para o Dashboard]([https://bikes-suggestions.streamlit.app/](https://leo-currycompany-project-ds.streamlit.app/))
 
 # Skills utilizadas:
 
