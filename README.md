@@ -1,5 +1,4 @@
 # Curry Project
-Link para o Dashboard([]())
 
 # Skills utilizadas:
 
