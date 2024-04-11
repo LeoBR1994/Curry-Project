@@ -1,5 +1,12 @@
 # Curry Project
 
+# Skills utilizadas:
+
+    Python
+    JupterLab
+    Streamlit
+    Streamlit Cloud
+    Github
 
 # 1. Problema de negócio
 
