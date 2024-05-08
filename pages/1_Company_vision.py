@@ -294,7 +294,7 @@ st.header('Marketplace - Customer Vision', divider='red')
 image = Image.open('curr_company.png')
 st.sidebar.image( image, width = 250)
 
-st.sidebar.write('<span style="font-size: medium;">Leonardo Rosa</span> <span style="font-size: small;">:blue[ | Data Scientist]</span>', unsafe_allow_html=True)
+st.sidebar.write('<span style="font-size: small;">:blue[Comunidade DS]</span>', unsafe_allow_html=True)
 
 #=================================
 #Barra de opções
