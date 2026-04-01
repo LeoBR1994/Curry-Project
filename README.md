@@ -6,8 +6,6 @@
 
 ---
 
-## 👋🏼 Quem sou eu:
-
 Me chamo **Leonardo Rosa**, tenho 32 anos e sou natural do Rio Grande do Sul. 
 Sou **Bacharel em Ciências Contábeis**, especializado em **Auditoria, Controladoria e Gestão de Processos**. Atualmente, estou cursando **Engenharia de Software** na UNICESUMAR - PR. 
 
