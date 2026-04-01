@@ -1,134 +1,126 @@
-# Curry Project
-[Acessar Dashboard](https://curry-project.streamlit.app/)
+<div align="left">
+  <img src="https://img.shields.io/badge/Ciência_de_Dados-gold?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Contabilidade-gold?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/Engenharia_de_Software-gold?style=for-the-badge" />
+</div>
 
-# Skills utilizadas:
+---
 
-    Python
-    JupterLab
-    Streamlit
-    Streamlit Cloud
-    Github
+## 👋🏼 Quem sou eu:
 
-# 1. Problema de negócio
+Me chamo **Leonardo Rosa**, tenho 32 anos e sou natural do Rio Grande do Sul. 
+Sou **Bacharel em Ciências Contábeis**, especializado em **Auditoria, Controladoria e Gestão de Processos**. Atualmente, estou cursando **Engenharia de Software** na UNICESUMAR - PR. 
 
-  A Cury Company é uma empresa de tecnologia que criou um aplicativo
-que conecta restaurantes, entregadores e pessoas.
-Através desse aplicativo, é possível realizar o pedido de uma refeição, em
-qualquer restaurante cadastrado, e recebê-lo no conforto da sua casa por
-um entregador também cadastrado no aplicativo da Cury Company.
-A empresa realiza negócios entre restaurantes, entregadores e pessoas,
-e gera muitos dados sobre entregas, tipos de pedidos, condições
-climáticas, avaliação dos entregadores e etc.
-  Apesar da entrega estar crescento, em termos de entregas, o CEO não tem visibilidade completa dos KPIs de crescimento da empresa.
-Você foi contratado como um Cientista de Dados para criar soluções de
-dados para entrega, mas antes de treinar algoritmos, a necessidade da
-empresa é ter um os principais KPIs estratégicos organizados em uma
-única ferramenta, para que o CEO possa consultar e conseguir tomar
-decisões simples, porém importantes.
-  A Cury Company possui um modelo de negócio chamado Marketplace,
-que fazer o intermédio do negócio entre três clientes principais:
-Restaurantes, entregadores e pessoas compradoras. Para acompanhar o
-crescimento desses negócios, o CEO gostaria de ver as seguintes métricas de crescimento:
+Sou apaixonado por tecnologia e estou me preparando para compartilhar conhecimento através do meu canal no YouTube **[Zero ao Insight](https://www.youtube.com/@dozer_aoinsight)**, focado em projetos de Ciência de Dados e análises contábeis.
 
-Do lado da empresa:
-  1. Quantidade de pedidos por dia.
-  2. Quantidade de pedidos por semana.
-  3. Distribuição dos pedidos por tipo de tráfego.
-  4. Comparação do volume de pedidos por cidade e tipo de tráfego.
-  4. A quantidade de pedidos por entregador por semana.
-  5. A localização central de cada cidade por tipo de tráfego.
-   
-Do lado do entregador:
-  1. A menor e maior idade dos entregadores.
-  2. A pior e a melhor condição de veículos.
-  3. A avaliação médida por entregador.
-  4. A avaliação média e o desvio padrão por tipo de tráfego.
-  5. A avaliação média e o desvio padrão por condições climáticas.
-  6. Os 10 entregadores mais rápidos por cidade.
-  7. Os 10 entregadores mais lentos por cidade.
-   
-Do lado do restaurantes:
-  1. A quantidade de entregadores únicos.
-  2. A distância média dos resturantes e dos locais de entrega.
-  3. O tempo médio e o desvio padrão de entrega por cidade.
-  4. O tempo médio e o desvio padrão de entrega por cidade e tipo de
-pedido.
-  5. O tempo médio e o desvio padrão de entrega por cidade e tipo de
-tráfego.
-  6. O tempo médio de entrega durantes os Festivais.
+---
 
-O objetivo desse projeto é criar um conjunto de gráficos e/ou tabelas que
-exibam essas métricas da melhor forma possível para o CEO.
+<p align="left">
+    <a href="https://www.instagram.com/_instaleonardorosa/">
+        <img alt="instagram" title="Siga-me no Instagram" src="https://img.shields.io/badge/Siga--me-Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&labelColor=C13584" />
+    </a>
+    <a href="https://www.youtube.com/@dozer_aoinsight?sub_confirmation=1">
+        <img alt="youtube subscribers" title="Inscreva-se no meu canal" src="https://custom-icon-badges.demolab.com/youtube/channel/subscribers/UCqtDTsM3-uizsJhLUbt-4FA?color=%23E05D44&label=Inscreva-se&logo=video&logoColor=white&style=for-the-badge&labelColor=CE4630" />
+    </a>
+    <a href="https://www.youtube.com/@dozer_aoinsight">
+        <img alt="youtube views" title="Visualizações no YouTube" src="https://custom-icon-badges.demolab.com/youtube/channel/views/UCqtDTsM3-uizsJhLUbt-4FA?color=%23E1AD0E&logo=eye&logoColor=white&style=for-the-badge&labelColor=C79600" />
+    </a>
+    <a href="https://github.com/LeoBR1994?tab=followers">
+        <img alt="Seguidores" title="Me siga no GitHub" src="https://custom-icon-badges.demolab.com/github/followers/LeoBR1994?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=Seguidores&logoColor=white" />
+    </a> 
+    <a href="https://github.com/LeoBR1994?tab=repositories&sort=stargazers">
+        <img alt="Total de estrelas" title="Total de estrelas GitHub" src="https://custom-icon-badges.demolab.com/github/stars/LeoBR1994?color=55960c&style=for-the-badge&labelColor=488207&logo=star&label=estrelas" />
+    </a>
+</p>
 
-# 2. Premissas assumidas para a análise
-   
-  1. A análise foi realizada com dados entre 11/02/2022 e 06/04/2022.
-  2. Marketplace foi o modelo de negócio assumido.
-  3. Os 3 principais visões do negócio foram: Visão transação de pedidos,
-  visão restaurante e visão entregadores.
+---
 
-# 3. Estratégia da solução
-   
-O painel estratégico foi desenvolvido utilizando as métricas que refletem
-as 3 principais visões do modelo de negócio da empresa:
+## 📊 Estatísticas do GitHub
 
-  1. Visão do crescimento da empresa
-  2. Visão do crescimento dos restaurantes
-  3. Visão do crescimento dos entregadores
-   
-Cada visão é representada pelo seguinte conjunto de métricas.
+<div align="center">
+  <table align="center" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="center" valign="bottom" style="padding-bottom: 10px;">
+        <b style="font-size: 1.1em; color: #a9b1d6;">Estatísticas Gerais</b>
+      </td>
+      <td align="center" valign="bottom" style="padding-bottom: 10px;">
+        <b style="font-size: 1.1em; color: #a9b1d6;">Proeficiência</b>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top">
+        <img height="175" src="https://github-readme-stats-sigma-five.vercel.app/api?username=LeoBR1994&show_icons=true&theme=tokyonight&locale=pt-br&include_all_commits=true&count_private=true&hide_border=true&hide_title=true" />
+      </td>
+      <td valign="top">
+        <img height="175" src="https://github-readme-stats-sigma-five.vercel.app/api/top-langs/?username=LeoBR1994&theme=tokyonight&layout=compact&langs_count=10&hide_border=true&include_all_commits=true&count_private=true&hide_title=true" />
+      </td>
+    </tr>
+  </table>
+</div>
 
-## 1. Visão do crescimento da empresa 
+---
 
-  1. Pedidos por dia
-  2. Porcentagem de pedidos por condições de trânsito
-  3. Quantidade de pedidos por tipo e por cidade.
-  4. Pedidos por semana
-  5. Quantidade de pedidos por tipo de entrega
-  6. Quantidade de pedidos por condições de trânsito e tipo de cidade
+### 🤖 Linguagens e Tecnologias:
 
-## 2. Visão do crescimento dos restaurantes
+<div align="center">
 
-  1. Quantidade de pedidos únicos.
-  2. Distância média percorrida.
-  3. Tempo médio de entrega durante festival e dias normais.
-  4. Desvio padrão do tempo de entrega durante festivais e dias
-normais.
-  5. Tempo de entrega médio por cidade.
-  6. Distribuição do tempo médio de entrega por cidade.
-  7. Tempo médio de entrega por tipo de pedido.
+**🧠 Ciência de Dados & Machine Learning** <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/> <img src="https://img.shields.io/badge/Numpy-013243?style=for-the-badge&logo=numpy&logoColor=white"/> <img src="https://img.shields.io/badge/Sklearn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white"/> <img src="https://img.shields.io/badge/Seaborn-444444?style=for-the-badge&logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/Matplotlib-11557c?style=for-the-badge&logo=python&logoColor=white"/> <img src="https://img.shields.io/badge/XGBoost-5C2C2C?style=for-the-badge&logo=python&logoColor=white"/>
 
-## 3. Visão do crescimento dos entregadores 
+**📊 BI, Analytics & Automação** <img src="https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=power-bi&logoColor=black"/> <img src="https://img.shields.io/badge/DAX-F2C811?style=for-the-badge&logo=power-bi&logoColor=black"/> <img src="https://img.shields.io/badge/Linguagem_M-F2C811?style=for-the-badge&logo=power-bi&logoColor=black"/> <img src="https://img.shields.io/badge/Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white"/> <img src="https://img.shields.io/badge/Power_Automate-0066FF?style=for-the-badge&logo=power-automate&logoColor=white"/>
 
-  1. Idade do entregador mais velho e do mais novo.
-  2. Avaliação do melhor e do pior veículo.
-  3. Avaliação média por entregador.
-  4. Avaliação média por condições de trânsito.
-  5. Avaliação média por condições climáticas.
-  6. Tempo médido do entregador mais rápido.
-  7. Tempo médio do entregador mais rápido por cidade.
+**🗄️ Dados, Cloud, ERP & SaaS** <img src="https://img.shields.io/badge/SQL-CC2927?style=for-the-badge&logo=sqlite&logoColor=white"/> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/> <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white"/> <img src="https://img.shields.io/badge/Databricks-FF3621?style=for-the-badge&logo=databricks&logoColor=white"/> <img src="https://img.shields.io/badge/SAP-008FD3?style=for-the-badge&logo=sap&logoColor=white"/> <img src="https://img.shields.io/badge/SaaS_Enterprise-004A73?style=for-the-badge&logo=cloud&logoColor=white"/>
 
-# 4. Top 3 Insights de dados
-   
-  1. A sazonalidade da quantidade de pedidos é diária. Há uma variação de aproximadamente 10% do número de pedidos em dia sequenciais.
-  2. As cidades do tipo Semi-Urban não possuem condições baixas de
-trânsito.
-  3. As maiores variações no tempo de entrega, acontecem durante o
-clima ensoladao.
+</div>
 
-# 5. O produto final do projeto
-   
-Painel online, hospedado em um Cloud e disponível para acesso em
-qualquer dispositivo conectado à internet.
+---
 
-O painel pode ser acessado através desse link: (https://curry-project.streamlit.app/)
+# 🍛 Curry Project
+> **Dashboard de Growth & Marketplace**
+> 🔗 [Acessar Dashboard no Streamlit](https://curry-project.streamlit.app/)
 
-# 6. Conclusão
-   
-  O objetivo desse projeto é criar um conjunto de gráficos e/ou tabelas que
-exibam essas métricas da melhor forma possível para o CEO.
-Da visão da Empresa, podemos concluir que o número de pedidos
-cresceu entre a semana 06 e a semana 13 do ano de 2022.
+## 1. Problema de Negócio
+A **Cury Company** é um Marketplace que conecta restaurantes, entregadores e consumidores. O CEO precisava de uma ferramenta centralizada para acompanhar os **KPIs estratégicos** e tomar decisões baseadas em dados.
 
+O objetivo foi estruturar métricas em três pilares principais:
 
+| Pilar | Foco Principal |
+| :--- | :--- |
+| **🏢 Empresa** | Crescimento de pedidos, volume por tráfego e sazonalidade. |
+| **🛵 Entregadores** | Avaliações médias, performance por clima e velocidade por cidade. |
+| **🍴 Restaurantes** | Distâncias médias, tempos de entrega e performance em festivais. |
 
+## 2. Estratégia da Solução
+Desenvolvi um painel estratégico com as seguintes visões técnicas:
+
+### 📈 Visão Empresa
+* **Volumetria:** Pedidos por dia e semana.
+* **Geolocalização:** Mapa de localização central por tráfego.
+* **Operacional:** Distribuição por tipo de entrega e condição de trânsito.
+
+### 🍱 Visão Restaurantes
+* **Métricas de Tempo:** Tempo médio e desvio padrão de entrega.
+* **Comparativos:** Performance durante períodos de Festivais vs. Dias Normais.
+* **Logística:** Distância média percorrida restaurante-cliente.
+
+### 🚚 Visão Entregadores
+* **Performance:** Ranking dos 10 entregadores mais rápidos/lentos por cidade.
+* **Qualidade:** Avaliação média segmentada por clima e trânsito.
+* **Frota:** Avaliação baseada na condição dos veículos.
+
+## 3. Top 3 Insights de Dados
+1. **Sazonalidade:** Há uma variação de ~10% no número de pedidos em dias sequenciais, indicando comportamento de compra diário.
+2. **Logística Urbana:** Cidades do tipo *Semi-Urban* não apresentam condições de trânsito baixo, impactando o tempo de entrega.
+3. **Clima:** As maiores variações (instabilidade) no tempo de entrega ocorrem paradoxalmente durante o clima ensolarado.
+
+## 4. Tecnologias Utilizadas
+* **Linguagem:** Python
+* **Análise:** Pandas, Numpy
+* **Visualização:** Plotly, Folium
+* **Deploy:** Streamlit & Streamlit Cloud
+
+---
+
+## 🏁 Conclusão
+Este projeto resultou em um produto final que permite ao CEO monitorar o crescimento da empresa em tempo real. Identificamos, por exemplo, que a empresa teve uma curva de crescimento positiva entre as semanas 06 e 13 de 2022.
+
+---
